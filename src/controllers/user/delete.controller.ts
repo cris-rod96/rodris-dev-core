@@ -1,12 +1,18 @@
 import type { Request, Response } from "express"
 import { userServices } from "../../services/index.services.ts"
 
-const registerUser = async (req: Request, res: Response) => {
+
+export const deleteById = async (req: Request, res: Response) => {
   try {
-    const data = req.body
-    const { code, message } = await userServices.registerUser(data)
+    const { id } = req.params
+    if (!id) {
+      return res.status(400).json({
+        message: "El id del usuario es obligatorio"
+      })
+    }
+    const { code, message } = await userServices.deleteById(id as string)
     res.status(code).json({ message })
-  } catch (err: unknown) {
+  } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({
         message: err.message
@@ -16,8 +22,7 @@ const registerUser = async (req: Request, res: Response) => {
         message: "Un error desconocido ha ocurrido. Intente nuevamente o consulte con un administrador."
       })
     }
+    
   }
 }
-export {
-  registerUser
-}
+
