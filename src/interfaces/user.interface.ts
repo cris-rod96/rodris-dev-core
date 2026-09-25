@@ -1,4 +1,4 @@
-import { Optional } from "sequelize";
+import { type Optional } from "sequelize";
 
 type Role = {
   role: "ADMIN" | "CLIENT" | "RECRUITER";
@@ -32,3 +32,6 @@ export interface UserCreationI extends Optional<
   | "createdAt"
   | "updatedAt"
 > {}
+
+
+export interface UserUpdateI extends Partial<Omit<UserI, "id" | "createdAt" | "updatedAt">> {}

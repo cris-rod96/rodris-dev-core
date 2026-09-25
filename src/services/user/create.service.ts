@@ -1,6 +1,6 @@
 import { Users } from "../../lib/db";
 import { bcryptUtils } from "../../utils/index.utils";
-import { UserCreationI } from "../../models/interfaces/user.interface";
+import { UserCreationI } from "../../interfaces/user.interface";
 
 export const registerUser = async (data: UserCreationI) => {
   const existingUser = await Users.findOne({
