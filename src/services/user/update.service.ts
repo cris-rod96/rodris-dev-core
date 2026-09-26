@@ -1,9 +1,5 @@
 import { Users } from "../../lib/db";
 import { UserUpdateI } from "../../interfaces/user.interface"
-
-
-
-
 const updateById = async (id: string, data: UserUpdateI) => {
   if (!id) {
     return {
@@ -31,6 +27,11 @@ const updateById = async (id: string, data: UserUpdateI) => {
       id
     }
   })
+
+  return {
+    code: 200,
+    message: "Información del usuario actualizada con éxito."
+  }
 }
 
 
